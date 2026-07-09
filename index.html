@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>♟️ Dama das Operações</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div id="app">
+        <header>
+            <h1>♟️ Dama das Operações</h1>
+            <div id="info">
+                <div id="turno">Vez de: —</div>
+                <div id="pontuacao">
+                    <span class="ponto-j1">●</span>
+                    <span class="nome-j1">Jogador 1</span>:
+                    <span class="pontos-j1">0</span>
+                    &nbsp;|&nbsp;
+                    <span class="ponto-j2">●</span>
+                    <span class="nome-j2">Jogador 2</span>:
+                    <span class="pontos-j2">0</span>
+                </div>
+                <div id="timer">⏱️ 25s</div>
+                <button id="btn-encerrar" class="btn-encerrar" title="Finalizar partida atual">🏁 Encerrar</button>
+            </div>
+        </header>
+
+        <main>
+            <!-- CONFIGURAÇÃO -->
+            <section id="configuracao">
+                <h2>Configuração da Partida</h2>
+
+                <div class="campo-nome">
+                    <label for="nome1">🔵 Jogador 1</label>
+                    <input type="text" id="nome1" placeholder="Ex: Ana" value="Ana" maxlength="20" />
+                </div>
+                <div class="campo-nome">
+                    <label for="nome2">🔴 Jogador 2</label>
+                    <input type="text" id="nome2" placeholder="Ex: Bruno" value="Bruno" maxlength="20" />
+                </div>
+
+                <div class="campo-tempo">
+                    <label for="tempoLimite">⏱️ Tempo (segundos)</label>
+                    <input type="number" id="tempoLimite" min="5" max="60" value="25" />
+                    <span class="dica">(5 a 60s)</span>
+                </div>
+
+                <hr />
+
+                <div class="config-tamanho">
+                    <h3>📏 Tamanho do tabuleiro</h3>
+                    <label>
+                        Dimensão (C x C):
+                        <input type="number" id="tamanhoTabuleiro" min="3" max="10" value="8" />
+                        <span class="dica">(mínimo 3, máximo 10)</span>
+                    </label>
+                </div>
+
+                <div class="config-intervalo">
+                    <h3>📊 Intervalo dos números</h3>
+                    <div class="intervalo-inputs">
+                        <label>De: <input type="number" id="minNum" value="0" /></label>
+                        <label>Até: <input type="number" id="maxNum" value="10" /></label>
+                    </div>
+                    <small class="dica">Valores de <em>a</em> e <em>b</em>.</small>
+                </div>
+
+                <div class="config-negativos">
+                    <h3>🔢 Permitir números negativos</h3>
+                    <label>
+                        <input type="checkbox" id="permiteNegativos" checked />
+                        ✅ Permitir números negativos nos resultados
+                    </label>
+                    <small class="dica">Desmarque para usar apenas números naturais (0, 1, 2, ...).</small>
+                </div>
+
+                <div class="config-operacoes">
+                    <h3>🧮 Operações permitidas</h3>
+                    <div class="ops-checkboxes">
+                        <label><input type="checkbox" id="opSoma" checked /> Soma (+)</label>
+                        <label><input type="checkbox" id="opSub" checked /> Subtração (−)</label>
+                        <label><input type="checkbox" id="opMult" checked /> Multiplicação (×)</label>
+                        <label><input type="checkbox" id="opDiv" checked /> Divisão (÷)</label>
+                    </div>
+                    <small class="dica">Selecione uma ou mais operações.</small>
+                </div>
+
+                <button id="btn-iniciar" class="btn-principal">▶️ Iniciar Jogo</button>
+                <p id="erro-nomes" class="erro"></p>
+            </section>
+
+            <!-- JOGO -->
+            <section id="jogo" class="hidden">
+                <div id="tabuleiro" role="grid"></div>
+
+                <div id="mensagem-final" class="hidden">
+                    <h2 id="vencedor"></h2>
+                    <p id="placar-final"></p>
+                    <div class="botoes-final">
+                        <button id="btn-reiniciar" class="btn-secundario">🔄 Nova Partida</button>
+                        <button id="btn-trocar-jogadores" class="btn-secundario">👥 Trocar Jogadores</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MODAL -->
+            <div id="modal" class="hidden" role="dialog" aria-modal="true">
+                <div id="modal-content">
+                    <p id="pergunta" class="pergunta-destaque"></p>
+                    <input type="number" id="resposta" placeholder="Digite a resposta" autofocus />
+                    <button id="btn-responder" class="btn-principal">Responder</button>
+                    <p id="feedback" aria-live="polite"></p>
+                </div>
+            </div>
+
+            <!-- OVERLAY DE VITÓRIA -->
+            <div id="overlay-vitoria" class="hidden">
+                <div id="vitoria-content">
+                    <div id="vitoria-mensagem">🏆 <span id="vitoria-nome"></span> venceu!</div>
+                    <div class="confetes">
+                        <span>🎉</span><span>✨</span><span>🎊</span><span>🌟</span><span>🎈</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p class="assinatura">Prof. Me. Marcos Viana</p>
+            <small>Dama das Operações • Projeto educacional</small>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
